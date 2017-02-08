@@ -8,9 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         reportManagerAddress: { type: S.STRING, allowNull: false }
     },
         {
-            classMethods: {
-
-            },
+            classMethods: {},
             underscored: true,
             timestamps: true,
             createdAt: 'created_on',

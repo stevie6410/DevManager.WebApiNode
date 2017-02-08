@@ -11,9 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         password: { type: S.STRING, allowNull: true }
     },
         {
-            classMethods: {
-                
-            },
+            classMethods: { },
             underscored: true,
             timestamps: true,
             createdAt: 'created_on',

@@ -3,6 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
 
+
     return queryInterface.bulkInsert('Workflows', [
       {
         name: "SAO Default Workflow",

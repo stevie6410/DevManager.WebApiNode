@@ -6,9 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         category: { type: DataTypes.STRING, allowNull: false }
     },
         {
-            classMethods: {
-
-            },
+            classMethods: {},
             underscored: true,
             timestamps: true,
             createdAt: 'created_on',
