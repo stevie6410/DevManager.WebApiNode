@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "appUser",
+    "password": "Password2",
+    "database": "DevManager_dev",
+    "dialect": "sqlite",
+    "storage": "bin/db.sqlite"
+  },
+  "test": {
+    "username": "appUser",
+    "password": "Password2",
+    "database": "DevManager_test",
+    "host": "DC0348",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "appUser",
+    "password": "Password2",
+    "database": "DevManager",
+    "host": "DC0348",
+    "dialect": "mysql"
+  }
+}
