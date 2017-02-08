@@ -9,7 +9,6 @@ module.exports = function (sequelize, DataTypes) {
         {
             classMethods: {
                 associate: function (models) {
-                    console.log('models', models);
                     WorkflowStage.belongsTo(models.Workflow);
                     WorkflowStage.belongsTo(models.DeployEnvironment);
                     WorkflowStage.belongsTo(models.Database);
