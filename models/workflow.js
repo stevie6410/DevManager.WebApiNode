@@ -9,8 +9,13 @@ module.exports = function (sequelize, DataTypes) {
         {
             classMethods: {
                 associate: function (models) {
+<<<<<<< Updated upstream
                     workflow.hasMany(models.package);
                     workflow.hasMany(models.workflowStage);
+=======
+                    Workflow.hasMany(models.Package);
+                    Workflow.hasMany(models.WorkflowStage);
+>>>>>>> Stashed changes
                 }
             },
             //Options for the model

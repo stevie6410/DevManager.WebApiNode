@@ -6,10 +6,18 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+<<<<<<< Updated upstream
 // var index = require('./routes/index');
 // var packageRouter = require('./routes/packages.router');
 // var workflowRouter = require('./routes/workflow.router');
 // var workflowStageRouter = require('./routes/workflow-stage.router');
+=======
+var index = require('./routes/index');
+var dbInfoRouter = require('./routes/db-info.router');
+var packageRouter = require('./routes/packages.router');
+var workflowRouter = require('./routes/workflow.router');
+var workflowStageRouter = require('./routes/workflow-stage.router');
+>>>>>>> Stashed changes
 var deployEnvironmentRouter = require('./routes/deploy-environment.router');
 // var reportServerRouter = require('./routes/report-server.router');
 var databaseRouter = require('./routes/database.router');
@@ -32,10 +40,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+<<<<<<< Updated upstream
 // app.use('/', index);
 // app.use('/api/packages', packageRouter);
 // app.use('/api/workflows', workflowRouter);
 // app.use('/api/workflowstages', workflowStageRouter);
+=======
+app.use('/', index);
+app.use('/api/dbinfo', dbInfoRouter);
+app.use('/api/packages', packageRouter);
+app.use('/api/workflows', workflowRouter);
+app.use('/api/workflowstages', workflowStageRouter);
+>>>>>>> Stashed changes
 app.use('/api/deployenvironments', deployEnvironmentRouter);
 // app.use('/api/reportservers', reportServerRouter);
 app.use('/api/databases', databaseRouter);

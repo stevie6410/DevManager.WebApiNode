@@ -13,10 +13,17 @@ router.get('/', function (req, res) {
 router.get('/:id', function (req, res) {
     models.WorkflowStage.findById(req.params.id, {
         include: [
+<<<<<<< Updated upstream
             { model: models.Workflow, as: 'workflow' },
             { model: models.DeployEnvironment, as: 'deployEnvironment' },
             { model: models.Database, as: 'database' },
             { model: models.ReportServer, as: 'reportServer' }
+=======
+            models.DeployEnvironment,
+            models.Database,
+            models.ReportServer,
+            models.Workflow
+>>>>>>> Stashed changes
         ]
     }).then(data => {
         res.send(data);

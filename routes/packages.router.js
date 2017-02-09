@@ -11,10 +11,15 @@ router.get('/', function (req, res) {
 
 //GET: Individual
 router.get('/:id', function (req, res) {
+<<<<<<< Updated upstream
     models.packageModel.findById(req.params.id, {
         include: [
             { model: models.packageModelDbObject, as: 'dbObjects' }
         ]
+=======
+    models.Package.findById(req.params.id, {
+        include: [models.Workflow]
+>>>>>>> Stashed changes
     }).then(data => {
         res.send(data);
     });

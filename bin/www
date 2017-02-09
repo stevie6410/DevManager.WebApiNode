@@ -14,6 +14,8 @@ var seedData = require('./seed-async');
  * Get port from environment and store in Express.
  */
 
+console.log(process.env.NODE_ENV);
+
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 /**
@@ -25,7 +27,11 @@ models.sequelize.sync({
   force: false
 }).then(function () {
   //Database initialized 
+<<<<<<< Updated upstream
   console.log("Database Synced");
+=======
+
+>>>>>>> Stashed changes
   seedData(models);
 
   /**
