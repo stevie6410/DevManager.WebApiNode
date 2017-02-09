@@ -31,20 +31,3 @@ module.exports = function (sequelize, DataTypes) {
     return PackageDbObject;
 
 };
-
-//         public int Id { get; set; }
-//         public Guid Guid { get; set; }
-//         public string ObjectKey { get; set; }
-//         public string DatabaseName { get; set; }
-//         public string SchemaName { get; set; }
-//         public string ObjectName { get; set; }
-//         public string LastEventType { get; set; }
-//         public string LastEventDDL { get; set; }
-//         public DateTime CreatedOn { get; set; }
-//         public string CreatedBy { get; set; }
-//         public DateTime ModifiedOn { get; set; }
-//         public string ModifiedBy { get; set; }
-//         public string ObjectType { get; set; }
-//         public string AttatchType { get; set; }
-//         public int DeployOrder { get; set; }
-//         public Package Package { get; set; }
