@@ -1,29 +1,19 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
-var model = models.database;
-var NewWorldController = require('../controllers/new-world.controller');
 
-var ctrl = new NewWorldController(model);
+var NewWorldController = require('../controllers/new-world.controller');
+var ctrl = new NewWorldController();
+
 
 router.get('/', function (req, res) {
+    ctrl.getAll()
+        .then(data => {
+            res.status(200);
+            res.send(data);
+        })
+        .catch(err => {
 
-    var databases;
-
-    ctrl.getAll().then(data => {
-        console.log(data);
-        databases = data;
-        res.send(data);
-    });
-
-    res.send(ctrl.getAll());
-
-    // console.log('Model', models.database);
-
-    // models.database.findAll().then(data => {
-    //     res.send(models.database);
-    // });
-
+        });
 });
 
 module.exports = router;

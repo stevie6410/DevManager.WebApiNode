@@ -73,7 +73,7 @@ module.exports = function (models) {
 
     var pkg1 = function (res) {
         ids.rs2 = res.id;
-        return models.packageModel.create({
+        return models.package.create({
             name: "Package 1",
             description: "Seed Package 1",
             status: "Pending",
@@ -86,7 +86,7 @@ module.exports = function (models) {
 
     var pkg2 = function (res) {
         ids.pkg1 = res.id;
-        return models.packageModel.create({
+        return models.package.create({
             name: "Package 2",
             description: "Seed Package 2",
             status: "Pending",
@@ -135,7 +135,7 @@ module.exports = function (models) {
 
     var depEv1 = function(res){
         ids.dep1 = res.id;
-        return models.DeploymentEvent.create({
+        return models.deploymentEvent.create({
             message: "Deployment Created",
             deployment_id: ids.dep1
         });
@@ -158,20 +158,20 @@ module.exports = function (models) {
         depEv1
     ];
 
-    // models.Workflow.findAll().then(data => {
-    //     if (data.length == 0) {
-    //         console.log("Seeding Started");
-    //         waterfall(exec)
-    //             .then(() => {
-    //                 console.log("Seeding Complete");
-    //                 // console.log(ids);
-    //             })
-    //             .catch((err) => {
-    //                 console.log("Seeding Failed", err);
-    //             });
-    //     } else {
-    //         console.log('Seeding not required');
-    //     }
-    // });
+    models.workflow.findAll().then(data => {
+        if (data.length == 0) {
+            console.log("Seeding Started");
+            waterfall(exec)
+                .then(() => {
+                    console.log("Seeding Complete");
+                    // console.log(ids);
+                })
+                .catch((err) => {
+                    console.log("Seeding Failed", err);
+                });
+        } else {
+            console.log('Seeding not required');
+        }
+    });
 }
 

@@ -11,10 +11,17 @@ module.exports = function (sequelize, DataTypes) {
     },
         {
             classMethods: {
+                belongsTo: [
+                    'deployEnvironment',
+                    'package'
+                ],
+                hasMany: [
+                    'deploymentEvent'
+                ],
                 associate: function (models) {
-                    deployment.belongsTo(models.deployEnvironment);
-                    deployment.belongsTo(models.package);
-                    deployment.hasMany(models.deploymentEvent);
+                    // deployment.belongsTo(models.deployEnvironment);
+                    // deployment.belongsTo(models.package);
+                    // deployment.hasMany(models.deploymentEvent);
                 }
             },
             //Options for the model
@@ -25,6 +32,8 @@ module.exports = function (sequelize, DataTypes) {
             deletedAt: 'deleted_on',
             paranoid: true //Add deleted timestamp flag instead of actual deletion});
         });
+
+    deployment.generateRoutes = true;
 
     return deployment;
 };

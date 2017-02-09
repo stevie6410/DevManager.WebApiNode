@@ -21,6 +21,8 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion});
         });
 
+    deploymentEvent.generateRoutes = true;
+
     return deploymentEvent;
 };
 

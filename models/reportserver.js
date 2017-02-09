@@ -17,5 +17,7 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
+        reportServer.generateRoutes = true;
+
     return reportServer;
 }

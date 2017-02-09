@@ -20,5 +20,7 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
+        database.generateRoutes = true;
+
     return database;
 }

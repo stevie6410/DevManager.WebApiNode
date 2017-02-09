@@ -6,24 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
-<<<<<<< Updated upstream
+var crudRouter = require('./routes/crud-router');
+
 // var index = require('./routes/index');
 // var packageRouter = require('./routes/packages.router');
 // var workflowRouter = require('./routes/workflow.router');
 // var workflowStageRouter = require('./routes/workflow-stage.router');
-=======
-var index = require('./routes/index');
-var dbInfoRouter = require('./routes/db-info.router');
-var packageRouter = require('./routes/packages.router');
-var workflowRouter = require('./routes/workflow.router');
-var workflowStageRouter = require('./routes/workflow-stage.router');
->>>>>>> Stashed changes
-var deployEnvironmentRouter = require('./routes/deploy-environment.router');
 // var reportServerRouter = require('./routes/report-server.router');
-var databaseRouter = require('./routes/database.router');
 // var deploymentRouter = require('./routes/deployment.router');
 // var deploymentEventRouter = require('./routes/deployment-event.router');
+var dbInfoRouter = require('./routes/db-info.router');
+// var databaseRouter = require('./routes/database.router');
 var newWorldRouter = require('./routes/new-world.router');
+var deployEnvironmentRouter = require('./routes/deploy-environment.router');
 
 var app = express();
 
@@ -33,32 +28,24 @@ app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-<<<<<<< Updated upstream
 // app.use('/', index);
 // app.use('/api/packages', packageRouter);
 // app.use('/api/workflows', workflowRouter);
 // app.use('/api/workflowstages', workflowStageRouter);
-=======
-app.use('/', index);
-app.use('/api/dbinfo', dbInfoRouter);
-app.use('/api/packages', packageRouter);
-app.use('/api/workflows', workflowRouter);
-app.use('/api/workflowstages', workflowStageRouter);
->>>>>>> Stashed changes
-app.use('/api/deployenvironments', deployEnvironmentRouter);
 // app.use('/api/reportservers', reportServerRouter);
-app.use('/api/databases', databaseRouter);
 // app.use('/api/deployments', deploymentRouter);
 // app.use('/api/deploymentevents', deploymentEventRouter);
 
+// app.use('/api/databases', databaseRouter);
+app.use('/api/dbinfo', dbInfoRouter);
 app.use('/api/newworld', newWorldRouter);
+app.use('/api', crudRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

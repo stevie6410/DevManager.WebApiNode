@@ -23,5 +23,6 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
+    workflowStage.generateRoutes = true;
     return workflowStage;
 }

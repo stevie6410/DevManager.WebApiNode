@@ -15,5 +15,7 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
+        deployEnvironment.generateRoutes = true;
+
     return deployEnvironment;
 }
