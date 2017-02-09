@@ -4,7 +4,7 @@ var Workflow = require('./workflow');
 
 module.exports = function (sequelize, DataTypes) {
 
-    var Package = sequelize.define("Package", {
+    var packageModel = sequelize.define("package", {
         name: { type: S.STRING, allowNull: false, unique: true },
         description: { type: S.TEXT, allowNull: true },
         status: { type: S.TEXT, allowNull: false },
@@ -14,10 +14,8 @@ module.exports = function (sequelize, DataTypes) {
     }, {
             classMethods: {
                 associate: function (models) {
-                    Package.belongsTo(models.Workflow, {
-                        onDelete: "CASCADE",
-                        foreignKey: { allowNull: false }
-                    });
+                    packageModel.belongsTo(models.workflow);
+                    packageModel.hasMany(models.packageDbObject, { as: 'dbObjects' });
                 }
             },
             underscored: true,
@@ -28,6 +26,6 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion
         });
 
-    return Package;
+    return packageModel;
 
 };

@@ -2,7 +2,7 @@
 var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
-    var Database = sequelize.define('Database', {
+    var database = sequelize.define('database', {
         name: { type: S.STRING, allowNull: false },
         databaseName: { type: S.STRING, allowNull: false },
         serverName: { type: S.STRING, allowNull: false },
@@ -20,5 +20,5 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
-    return Database;
+    return database;
 }

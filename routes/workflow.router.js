@@ -11,8 +11,10 @@ router.get('/', function (req, res) {
 
 //GET: Individual
 router.get('/:id', function (req, res) {
-    models.Workflow.findById(req.params.id,{
-        include: [models.WorkflowStage]
+    models.Workflow.findById(req.params.id, {
+        include: [
+            { model: models.WorkflowStage, as: 'workflowStage' }
+        ]
     }).then(data => {
         res.send(data);
     });

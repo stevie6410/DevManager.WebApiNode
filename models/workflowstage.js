@@ -2,17 +2,17 @@
 var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
-    var WorkflowStage = sequelize.define('WorkflowStage', {
+    var workflowStage = sequelize.define('workflowStage', {
         name: { type: S.STRING, allowNull: false },
         sequence: { type: S.INTEGER, allowNull: false }
     },
         {
             classMethods: {
                 associate: function (models) {
-                    WorkflowStage.belongsTo(models.Workflow);
-                    WorkflowStage.belongsTo(models.DeployEnvironment);
-                    WorkflowStage.belongsTo(models.Database);
-                    WorkflowStage.belongsTo(models.ReportServer);
+                    workflowStage.belongsTo(models.workflow);
+                    workflowStage.belongsTo(models.deployEnvironment);
+                    workflowStage.belongsTo(models.database);
+                    workflowStage.belongsTo(models.reportServer);
                 }
             },
             underscored: true,
@@ -23,5 +23,5 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
-    return WorkflowStage;
+    return workflowStage;
 }

@@ -4,14 +4,18 @@ var router = express.Router();
 
 //GET: All
 router.get('/', function (req, res) {
-    models.Package.findAll().then(data => {
+    models.packageModelModel.findAll().then(data => {
         res.send(data);
     });
 });
 
 //GET: Individual
 router.get('/:id', function (req, res) {
-    models.Package.findById(req.params.id).then(data => {
+    models.packageModel.findById(req.params.id, {
+        include: [
+            { model: models.packageModelDbObject, as: 'dbObjects' }
+        ]
+    }).then(data => {
         res.send(data);
     });
 });
@@ -19,7 +23,7 @@ router.get('/:id', function (req, res) {
 //POST: Add New
 router.post('/', function (req, res) {
     res.type('application/json');
-    models.Package.create(req.body)
+    models.packageModel.create(req.body)
         .then((data) => {
             res.send(data);
         })
@@ -33,7 +37,7 @@ router.post('/', function (req, res) {
 //PUT: Update
 router.put('/:id', function (req, res) {
     res.type('application/json');
-    models.Package
+    models.packageModel
         .findById(req.params.id) //First get the DB version of the record
         .then((data) => {
             if (data) {
@@ -55,7 +59,7 @@ router.put('/:id', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    models.Package.findById(req.params.id)
+    models.packageModel.findById(req.params.id)
         .then((data) => {
             return data.destroy()
         }).then(() => {

@@ -2,15 +2,15 @@
 var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
-    var Workflow = sequelize.define('Workflow', {
+    var workflow = sequelize.define('workflow', {
         //Fields in the model
         name: { type: S.STRING, allowNull: false }
     },
         {
             classMethods: {
                 associate: function (models) {
-                    Workflow.hasMany(models.Package);
-                    Workflow.hasMany(models.WorkflowStage);
+                    workflow.hasMany(models.package);
+                    workflow.hasMany(models.workflowStage);
                 }
             },
             //Options for the model
@@ -22,6 +22,6 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion});
         });
 
-    return Workflow;
+    return workflow;
 };
 

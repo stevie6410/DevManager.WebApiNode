@@ -2,16 +2,18 @@ var models = require('../models');
 var express = require('express');
 var router = express.Router();
 
+var entityModel = models.deployEnvironment;
+
 //GET: All
 router.get('/', function (req, res) {
-    models.DeployEnvironment.findAll().then(data => {
+    entityModel.findAll().then(data => {
         res.send(data);
     });
 });
 
 //GET: Individual
 router.get('/:id', function (req, res) {
-    models.DeployEnvironment.findById(req.params.id).then(data => {
+    entityModel.findById(req.params.id).then(data => {
         res.send(data);
     });
 });
@@ -19,7 +21,7 @@ router.get('/:id', function (req, res) {
 //POST: Add New
 router.post('/', function (req, res) {
     res.type('application/json');
-    models.DeployEnvironment.create(req.body)
+    entityModel.create(req.body)
         .then((data) => {
             res.send(data);
         })
@@ -33,7 +35,7 @@ router.post('/', function (req, res) {
 //PUT: Update
 router.put('/:id', function (req, res) {
     res.type('application/json');
-    models.DeployEnvironment
+    entityModel
         .findById(req.params.id) //First get the DB version of the record
         .then((data) => {
             if (data) {
@@ -55,7 +57,7 @@ router.put('/:id', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
-    models.DeployEnvironment.findById(req.params.id)
+    entityModel.findById(req.params.id)
         .then((data) => {
             return data.destroy()
         }).then(() => {

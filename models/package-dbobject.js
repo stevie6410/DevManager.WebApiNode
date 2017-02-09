@@ -3,7 +3,7 @@ var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
 
-    var PackageDbObject = sequelize.define("PackageDbObject", {
+    var packageDbObject = sequelize.define("packageDbObject", {
         guid: { type: S.STRING, allowNull: false },
         objeckKey: { type: S.STRING, allowNull: false },
         databaseName: { type: S.STRING, allowNull: false },
@@ -17,7 +17,6 @@ module.exports = function (sequelize, DataTypes) {
     }, {
             classMethods: {
                 associate: function (models) {
-                    PackageDbObject.belongsTo(models.Package);
                 }
             },
             underscored: true,
@@ -28,6 +27,6 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion
         });
 
-    return PackageDbObject;
+    return packageDbObject;
 
 };

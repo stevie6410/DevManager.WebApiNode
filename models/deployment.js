@@ -2,7 +2,7 @@
 var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
-    var Deployment = sequelize.define('Deployment', {
+    var deployment = sequelize.define('deployment', {
         //Fields in the model
         status: { type: S.STRING, allowNull: false },
         createdBy: { type: S.STRING, allowNull: false },
@@ -12,9 +12,9 @@ module.exports = function (sequelize, DataTypes) {
         {
             classMethods: {
                 associate: function (models) {
-                    Deployment.belongsTo(models.DeployEnvironment);
-                    Deployment.belongsTo(models.Package);
-                    Deployment.hasMany(models.DeploymentEvent);
+                    deployment.belongsTo(models.deployEnvironment);
+                    deployment.belongsTo(models.package);
+                    deployment.hasMany(models.deploymentEvent);
                 }
             },
             //Options for the model
@@ -26,6 +26,6 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion});
         });
 
-    return Deployment;
+    return deployment;
 };
 

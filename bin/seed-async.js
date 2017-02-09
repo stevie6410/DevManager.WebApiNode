@@ -5,21 +5,21 @@ module.exports = function (models) {
     var ids = {};
 
     var wf1 = function () {
-        return models.Workflow.create({
+        return models.workflow.create({
             name: "Default SAO Reports Workflow"
         });
     };
 
     var wf2 = function (res) {
         ids.wf1 = res.id;
-        return models.Workflow.create({
+        return models.workflow.create({
             name: "BEdrock Reports Workflow"
         });
     };
 
     var env1 = function (res) {
         ids.wf2 = res.id;
-        return models.DeployEnvironment.create({
+        return models.deployEnvironment.create({
             name: "Testing",
             category: "TEST"
         });
@@ -27,7 +27,7 @@ module.exports = function (models) {
 
     var env2 = function (res) {
         ids.env1 = res.id;
-        return models.DeployEnvironment.create({
+        return models.deployEnvironment.create({
             name: "Production",
             category: "PROD"
         });
@@ -35,7 +35,7 @@ module.exports = function (models) {
 
     var db1 = function (res) {
         ids.env2 = res.id;
-        return models.Database.create({
+        return models.database.create({
             name: "ReportData - Test",
             databaseName: "ReportData",
             serverName: "DC0348",
@@ -45,7 +45,7 @@ module.exports = function (models) {
 
     var db2 = function (res) {
         ids.db1 = res.id;
-        return models.Database.create({
+        return models.database.create({
             name: "ReportData - Prod",
             databaseName: "ReportData",
             serverName: "DCWSAORD001P",
@@ -55,7 +55,7 @@ module.exports = function (models) {
 
     var rs1 = function (res) {
         ids.db2 = res.id;
-        return models.ReportServer.create({
+        return models.reportServer.create({
             name: "SAO Report Server - Test",
             reportServerAddress: 'http://DC0348:81/ReportServer/',
             reportManagerAddress: 'http://DC0348:81/Reports/'
@@ -64,7 +64,7 @@ module.exports = function (models) {
 
     var rs2 = function (res) {
         ids.rs1 = res.id;
-        return models.ReportServer.create({
+        return models.reportServer.create({
             name: "SAO Report Server - Production",
             reportServerAddress: 'http://DCWSAORD001P/ReportServer/',
             reportManagerAddress: 'http://DCWSAORD001P/Reports/'
@@ -73,7 +73,7 @@ module.exports = function (models) {
 
     var pkg1 = function (res) {
         ids.rs2 = res.id;
-        return models.Package.create({
+        return models.packageModel.create({
             name: "Package 1",
             description: "Seed Package 1",
             status: "Pending",
@@ -86,7 +86,7 @@ module.exports = function (models) {
 
     var pkg2 = function (res) {
         ids.pkg1 = res.id;
-        return models.Package.create({
+        return models.packageModel.create({
             name: "Package 2",
             description: "Seed Package 2",
             status: "Pending",
@@ -99,7 +99,7 @@ module.exports = function (models) {
 
     var wfs1 = function (res) {
         ids.pkg2 = res.id;
-        return models.WorkflowStage.create({
+        return models.workflowStage.create({
             name: "SAO Report - Testing",
             sequence: 1,
             workflow_id: ids.wf1,
@@ -111,7 +111,7 @@ module.exports = function (models) {
 
     var wfs2 = function (res) {
         ids.wfs1 = res.id;
-        return models.WorkflowStage.create({
+        return models.workflowStage.create({
             name: "SAO Report - Production",
             sequence: 1,
             workflow_id: ids.wf1,
@@ -123,7 +123,7 @@ module.exports = function (models) {
 
     var dep1 = function (res) {
         ids.wfs2 = res.id;
-        return models.Deployment.create({
+        return models.deployment.create({
             status: "Pending",
             createdBy: "Steve Kent",
             deployedBy: "Steve Kent",
@@ -158,20 +158,20 @@ module.exports = function (models) {
         depEv1
     ];
 
-    models.Workflow.findAll().then(data => {
-        if (data.length == 0) {
-            console.log("Seeding Started");
-            waterfall(exec)
-                .then(() => {
-                    console.log("Seeding Complete");
-                    // console.log(ids);
-                })
-                .catch((err) => {
-                    console.log("Seeding Failed", err);
-                });
-        } else {
-            console.log('Seeding not required');
-        }
-    });
+    // models.Workflow.findAll().then(data => {
+    //     if (data.length == 0) {
+    //         console.log("Seeding Started");
+    //         waterfall(exec)
+    //             .then(() => {
+    //                 console.log("Seeding Complete");
+    //                 // console.log(ids);
+    //             })
+    //             .catch((err) => {
+    //                 console.log("Seeding Failed", err);
+    //             });
+    //     } else {
+    //         console.log('Seeding not required');
+    //     }
+    // });
 }
 

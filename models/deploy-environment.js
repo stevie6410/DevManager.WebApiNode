@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function (sequelize, DataTypes) {
-    var DeployEnvironment = sequelize.define('DeployEnvironment', {
+    var deployEnvironment = sequelize.define('deployEnvironment', {
         name: { type: DataTypes.STRING, allowNull: false },
         category: { type: DataTypes.STRING, allowNull: false }
     },
@@ -15,5 +15,5 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true
         });
 
-    return DeployEnvironment;
+    return deployEnvironment;
 }
