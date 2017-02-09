@@ -121,6 +121,26 @@ module.exports = function (models) {
         });
     }
 
+    var dep1 = function (res) {
+        ids.wfs2 = res.id;
+        return models.Deployment.create({
+            status: "Pending",
+            createdBy: "Steve Kent",
+            deployedBy: "Steve Kent",
+            deployedOn: new Date(),
+            deploy_environment_id: ids.env1,
+            package_id: ids.pkg1
+        });
+    }
+
+    var depEv1 = function(res){
+        ids.dep1 = res.id;
+        return models.DeploymentEvent.create({
+            message: "Deployment Created",
+            deployment_id: ids.dep1
+        });
+    }
+
     var exec = [
         wf1,
         wf2,
@@ -133,17 +153,25 @@ module.exports = function (models) {
         pkg1,
         pkg2,
         wfs1,
-        wfs2
+        wfs2,
+        dep1,
+        depEv1
     ];
 
-    waterfall(exec)
-        .then(() => {
-            console.log("Seeding Complete");
-            console.log(ids);
-        })
-        .catch((err) => {
-            console.log("Seeding Failed", err);
-        });
-
+    models.Workflow.findAll().then(data => {
+        if (data.length == 0) {
+            console.log("Seeding Started");
+            waterfall(exec)
+                .then(() => {
+                    console.log("Seeding Complete");
+                    // console.log(ids);
+                })
+                .catch((err) => {
+                    console.log("Seeding Failed", err);
+                });
+        } else {
+            console.log('Seeding not required');
+        }
+    });
 }
 

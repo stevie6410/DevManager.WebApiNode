@@ -12,6 +12,8 @@ var workflowStageRouter = require('./routes/workflow-stage.router');
 var deployEnvironmentRouter = require('./routes/deploy-environment.router');
 var reportServerRouter = require('./routes/report-server.router');
 var databaseRouter = require('./routes/database.router');
+var deploymentRouter = require('./routes/deployment.router');
+var deploymentEventRouter = require('./routes/deployment-event.router');
 
 var app = express();
 
@@ -33,6 +35,8 @@ app.use('/api/workflowstages', workflowStageRouter);
 app.use('/api/deployenvironments', deployEnvironmentRouter);
 app.use('/api/reportservers', reportServerRouter);
 app.use('/api/databases', databaseRouter);
+app.use('/api/deployments', deploymentRouter);
+app.use('/api/deploymentevents', deploymentEventRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

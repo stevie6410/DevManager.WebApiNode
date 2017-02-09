@@ -22,11 +22,10 @@ app.set('port', port);
 var server = http.createServer(app);
 
 models.sequelize.sync({
-  force: true
+  force: false
 }).then(function () {
-
   //Database initialized 
-  
+  console.log("Database Synced");
   seedData(models);
 
   /**
