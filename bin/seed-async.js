@@ -133,11 +133,18 @@ module.exports = function (models) {
         });
     }
 
-    var depEv1 = function(res){
+    var depEv1 = function (res) {
         ids.dep1 = res.id;
         return models.deploymentEvent.create({
             message: "Deployment Created",
             deployment_id: ids.dep1
+        });
+    }
+
+    var pkgRpt1 = function (res) {
+        ids.depEv1 = res.id;
+        return models.packageReport.create({
+            
         });
     }
 
