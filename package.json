@@ -7,8 +7,7 @@
     "test-pg": "NODE_ENV=test-pg nodemon ./bin/www",
     "production-pg": "NODE_ENV=production-pg nodemon ./bin/www",
     "test-mssql": "NODE_ENV=test-mssql nodemon ./bin/www",
-    "production-mssql": "NODE_ENV=production-mssql nodemon ./bin/www",
-    "seed": "sequelize db:seed:all"
+    "production-mssql": "NODE_ENV=production-mssql nodemon ./bin/www"
   },
   "dependencies": {
     "async": "^2.1.4",
