@@ -18,7 +18,7 @@ connection.on('connect', function (err) {
         executeStatment();
     } else {
         console.log('Connnection failed: ', err);
-    }h
+    }
 });
 
 
