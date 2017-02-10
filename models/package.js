@@ -18,7 +18,8 @@ module.exports = function (sequelize, DataTypes) {
                 ]
                 ,
                 hasManyModels: [
-                    'packageDbObject'
+                    'packageDbObject',
+                    'packageReport'
                 ]
             },
             underscored: true,

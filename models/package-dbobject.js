@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
 
     var packageDbObject = sequelize.define("packageDbObject", {
         guid: { type: S.STRING, allowNull: false },
-        objeckKey: { type: S.STRING, allowNull: false },
+        objectKey: { type: S.STRING, allowNull: false },
         databaseName: { type: S.STRING, allowNull: false },
         schemaName: { type: S.STRING, allowNull: false },
         objectName: { type: S.STRING, allowNull: false },

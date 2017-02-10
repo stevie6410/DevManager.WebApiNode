@@ -144,7 +144,62 @@ module.exports = function (models) {
     var pkgRpt1 = function (res) {
         ids.depEv1 = res.id;
         return models.packageReport.create({
-            
+            name: "Sales Order Shortages",
+            description: "Sales Order Report",
+            reportId: '9093dnd30dnakklkdi39jd09309nd0n',
+            path: "/SAO Shared/Sales Orders/Sales Order Shortages",
+            type: "Report",
+            package_id: ids.pkg1
+        });
+    }
+
+    var pkgObj1 = function (res) {
+        ids.pkgRpt1 = res.id;
+        return models.packageDbObject.create({
+            guid: "dandn39dnao9838398298hndnd839n8",
+            objectKey: "ReportData.dbo.usp_SalesOrderStatus",
+            databaseName: "ReportData",
+            schemaName: "dbo",
+            objectName: "usp_SalesOrderStatus",
+            lastEventType: "CREATE",
+            lastEventDDL: `
+                CREATE PROCEDURE dbo.uspSalesOrderStatus
+                AS
+
+                SELECT
+                    * 
+                FROM
+                    sys.objects
+            `,
+            createdBy: "Steve Kent",
+            modifiedBy: "Steve Kent",
+            deployOrder: 0,
+            package_id: ids.pkg1
+        });
+    }
+
+    var pkgObj2 = function (res) {
+        ids.pkgObj1 = res.id;
+        return models.packageDbObject.create({
+            guid: "dandn39dnao983ede8398298hndnd839n8",
+            objectKey: "ReportData.dbo.usp_SalesOrderStatus_ByOwner",
+            databaseName: "ReportData",
+            schemaName: "dbo",
+            objectName: "usp_SalesOrderStatus_ByOwner",
+            lastEventType: "CREATE",
+            lastEventDDL: `
+                CREATE PROCEDURE dbo.uspSalesOrderStatus_ByOwner
+                AS
+
+                SELECT TOP 1
+                    * 
+                FROM
+                    sys.objects
+            `,
+            createdBy: "Steve Kent",
+            modifiedBy: "Steve Kent",
+            deployOrder: 0,
+            package_id: ids.pkg1
         });
     }
 
@@ -162,7 +217,10 @@ module.exports = function (models) {
         wfs1,
         wfs2,
         dep1,
-        depEv1
+        depEv1,
+        pkgRpt1,
+        pkgObj1,
+        pkgObj2
     ];
 
     models.workflow.findAll().then(data => {
