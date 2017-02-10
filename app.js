@@ -11,8 +11,10 @@ var crudRouter = require('./routes/crud-router');
 var dbInfoRouter = require('./routes/db-info.router');
 
 var app = express();
-
 app.use(cors());
+
+var SqlSqnc = require('./sqlsync/sqlsync');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
