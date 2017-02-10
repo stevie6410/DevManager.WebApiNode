@@ -6,19 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+var indexRouter = require('./routes/index');
 var crudRouter = require('./routes/crud-router');
-
-// var index = require('./routes/index');
-// var packageRouter = require('./routes/packages.router');
-// var workflowRouter = require('./routes/workflow.router');
-// var workflowStageRouter = require('./routes/workflow-stage.router');
-// var reportServerRouter = require('./routes/report-server.router');
-// var deploymentRouter = require('./routes/deployment.router');
-// var deploymentEventRouter = require('./routes/deployment-event.router');
 var dbInfoRouter = require('./routes/db-info.router');
-// var databaseRouter = require('./routes/database.router');
-var newWorldRouter = require('./routes/new-world.router');
-var deployEnvironmentRouter = require('./routes/deploy-environment.router');
 
 var app = express();
 
@@ -34,18 +24,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', index);
-// app.use('/api/packages', packageRouter);
-// app.use('/api/workflows', workflowRouter);
-// app.use('/api/workflowstages', workflowStageRouter);
-// app.use('/api/reportservers', reportServerRouter);
-// app.use('/api/deployments', deploymentRouter);
-// app.use('/api/deploymentevents', deploymentEventRouter);
-
-// app.use('/api/databases', databaseRouter);
-app.use('/api/dbinfo', dbInfoRouter);
-app.use('/api/newworld', newWorldRouter);
+app.use('/', indexRouter);
 app.use('/api', crudRouter);
+app.use('/api/dbinfo', dbInfoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

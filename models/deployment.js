@@ -11,18 +11,13 @@ module.exports = function (sequelize, DataTypes) {
     },
         {
             classMethods: {
-                belongsTo: [
+                belongsToModels: [
                     'deployEnvironment',
                     'package'
                 ],
-                hasMany: [
+                hasManyModels: [
                     'deploymentEvent'
-                ],
-                associate: function (models) {
-                    // deployment.belongsTo(models.deployEnvironment);
-                    // deployment.belongsTo(models.package);
-                    // deployment.hasMany(models.deploymentEvent);
-                }
+                ]
             },
             //Options for the model
             underscored: true,

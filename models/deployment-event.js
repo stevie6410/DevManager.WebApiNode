@@ -8,9 +8,9 @@ module.exports = function (sequelize, DataTypes) {
     },
         {
             classMethods: {
-                associate: function (models) {
-                    deploymentEvent.belongsTo(models.deployment);
-                }
+                belongsToModels: [
+                    'deployment'
+                ]
             },
             //Options for the model
             underscored: true,

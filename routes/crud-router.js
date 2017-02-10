@@ -6,8 +6,23 @@ var pluralize = require('pluralize');
 db.models.forEach(function (model) {
     if (db[model].generateRoutes) {
         var routeEntityName = pluralize.plural(model);
+        var includeModels = [];
 
-        console.log(`Adding CRUD routes for ${routeEntityName}`);
+        // console.log(`Adding CRUD routes for ${routeEntityName}`);
+
+        //Build a list of relations to include
+        if ("hasManyModels" in db[model]) {
+            db[model].hasManyModels.forEach(function (to) {
+                // console.log(`Adding many relationship for ${model} into ${to}`)
+                includeModels.push(db[to]);
+            });
+        }
+        if ("belongsToModels" in db[model]) {
+            db[model].belongsToModels.forEach(function (to) {
+                // console.log(`Adding single relationship for ${model} into ${to}`)
+                includeModels.push(db[to]);
+            });
+        }
 
         //GET: All
         router.get(`/${routeEntityName}`, function (req, res) {
@@ -18,7 +33,10 @@ db.models.forEach(function (model) {
 
         //GET: Individual
         router.get(`/${routeEntityName}/:id`, function (req, res) {
-            db[model].findById(req.params.id).then(data => {
+            // console.log('including: ', includeModels);
+            db[model].findById(req.params.id, {
+                include: includeModels
+            }).then(data => {
                 res.send(data);
             });
         });

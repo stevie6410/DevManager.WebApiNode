@@ -25,14 +25,27 @@ fs
   });
 
 Object.keys(db).forEach(function (modelName) {
-  console.log(modelName);
+  // console.log('Model: ', modelName);
   if ("associate" in db[modelName]) {
     db[modelName].associate(db);
   }
-  if ("belongsTo" in db[modelName]) {
-    if (Array.isArray(db[modelName].belongsTo)) {
-      db[modelName].belongsTo.forEach(function (to) {
-        console.log('---------' + to);
+
+  //Dynamicaly pickup a list of tables and associate the belongsTo functions
+  if ("belongsToModels" in db[modelName]) {
+    if (Array.isArray(db[modelName].belongsToModels)) {
+      db[modelName].belongsToModels.forEach(function (to) {
+        db[modelName].belongsTo(db[to]);
+        // console.log('----belongsTo-----' + to);
+      })
+    };
+  };
+
+  //Dynamicaly pickup a list of tables and associate the hasMany functions
+  if ("hasManyModels" in db[modelName]) {
+    if (Array.isArray(db[modelName].hasManyModels)) {
+      db[modelName].hasManyModels.forEach(function (to) {
+        db[modelName].hasMany(db[to]);
+        // console.log('----hasMany-----' + to);
       })
     };
   };

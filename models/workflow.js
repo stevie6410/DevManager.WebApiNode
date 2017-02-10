@@ -8,10 +8,10 @@ module.exports = function (sequelize, DataTypes) {
     },
         {
             classMethods: {
-                associate: function (models) {
-                    workflow.hasMany(models.package);
-                    workflow.hasMany(models.workflowStage);
-                }
+                hasManyModels: [
+                    'package',
+                    'workflowStage'
+                ]            
             },
             //Options for the model
             underscored: true,

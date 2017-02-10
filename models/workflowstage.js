@@ -8,6 +8,12 @@ module.exports = function (sequelize, DataTypes) {
     },
         {
             classMethods: {
+                belongsToModels: [
+                    'workflow',
+                    'deployEnvironment',
+                    'database',
+                    'reportServer'
+                ],
                 associate: function (models) {
                     workflowStage.belongsTo(models.workflow);
                     workflowStage.belongsTo(models.deployEnvironment);

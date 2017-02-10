@@ -13,10 +13,13 @@ module.exports = function (sequelize, DataTypes) {
         modifiedBy: { type: S.TEXT, allowNull: true }
     }, {
             classMethods: {
-                associate: function (models) {
-                    packageModel.belongsTo(models.workflow);
-                    packageModel.hasMany(models.packageDbObject, { as: 'dbObjects' });
-                }
+                belongsToModels: [
+                    'workflow'
+                ]
+                ,
+                hasManyModels: [
+                    'packageDbObject'
+                ]
             },
             underscored: true,
             timestamps: true,
@@ -26,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion
         });
 
-        packageModel.generateRoutes = true;
+    packageModel.generateRoutes = true;
 
     return packageModel;
 

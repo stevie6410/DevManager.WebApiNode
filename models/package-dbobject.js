@@ -15,10 +15,7 @@ module.exports = function (sequelize, DataTypes) {
         modifiedBy: { type: S.STRING, allowNull: false },
         deployOrder: { type: S.INTEGER, allowNull: false },
     }, {
-            classMethods: {
-                associate: function (models) {
-                }
-            },
+            classMethods: {},
             underscored: true,
             timestamps: true,
             createdAt: 'created_on',
