@@ -21,7 +21,6 @@ connection.on('connect', function (err) {
     }
 });
 
-
 function executeStatment() {
     var request = new Request("SELECT TOP 2 * FROM sys.objects", function (err, rowCount) {
         if (err) {
