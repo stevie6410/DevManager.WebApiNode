@@ -13,13 +13,7 @@ module.exports = function (sequelize, DataTypes) {
                     'deployEnvironment',
                     'database',
                     'reportServer'
-                ],
-                associate: function (models) {
-                    workflowStage.belongsTo(models.workflow);
-                    workflowStage.belongsTo(models.deployEnvironment);
-                    workflowStage.belongsTo(models.database);
-                    workflowStage.belongsTo(models.reportServer);
-                }
+                ]
             },
             underscored: true,
             timestamps: true,
