@@ -4,8 +4,7 @@
     "password": "Password2",
     "database": "DevManager_dev",
     "dialect": "sqlite",
-    "storage": "bin/db.sqlite",
-    "logging": false
+    "storage": "bin/db.sqlite"
   },
   "test-pg": {
     "username": "appUser",

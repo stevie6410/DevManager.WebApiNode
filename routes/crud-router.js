@@ -8,8 +8,8 @@ db.models.forEach(function (model) {
         var routeEntityName = pluralize.plural(model);
         var includeModels = [];
 
-        // console.log(`Adding CRUD routes for ${routeEntityName}`);
-
+        //console.log(`Adding CRUD routes for ${routeEntityName}`);
+        console.log('===========================================================');
         //Build a list of relations to include
         if ("hasManyModels" in db[model]) {
             db[model].hasManyModels.forEach(function (to) {
@@ -24,6 +24,7 @@ db.models.forEach(function (model) {
             });
         }
 
+        console.log(`       GET:    /api/${routeEntityName}`);
         //GET: All
         router.get(`/${routeEntityName}`, function (req, res) {
             db[model].findAll().then(data => {
@@ -31,6 +32,7 @@ db.models.forEach(function (model) {
             });
         });
 
+        console.log(`       GET:    /api/${routeEntityName}/:id`);
         //GET: Individual
         router.get(`/${routeEntityName}/:id`, function (req, res) {
             // console.log('including: ', includeModels);
@@ -41,6 +43,7 @@ db.models.forEach(function (model) {
             });
         });
 
+        console.log(`       POST:   /api/${routeEntityName}`);
         //POST: Add New
         router.post(`/${routeEntityName}`, function (req, res) {
             res.type('application/json');
@@ -55,6 +58,7 @@ db.models.forEach(function (model) {
                 });
         });
 
+        console.log(`       PUT:    /api/${routeEntityName}/:id`);
         //PUT: Update
         router.put(`/${routeEntityName}/:id`, function (req, res) {
             res.type('application/json');
@@ -79,6 +83,7 @@ db.models.forEach(function (model) {
                 });
         });
 
+        console.log(`       DELTE:  /api/${routeEntityName}/:id`);
         router.delete(`/${routeEntityName}/:id`, function (req, res) {
             db[model].findById(req.params.id)
                 .then((data) => {
