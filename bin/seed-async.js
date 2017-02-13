@@ -39,7 +39,9 @@ module.exports = function (models) {
             name: "ReportData - Test",
             databaseName: "ReportData",
             serverName: "DC0348",
-            useWindowsAuth: true
+            useWindowsAuth: false,
+            username: 'appUser',
+            password: 'Password2'
         });
     };
 
@@ -49,7 +51,9 @@ module.exports = function (models) {
             name: "ReportData - Prod",
             databaseName: "ReportData",
             serverName: "DCWSAORD001P",
-            useWindowsAuth: true
+            useWindowsAuth: false,
+            username: 'appUser',
+            password: 'Password2'
         });
     };
 
@@ -129,7 +133,8 @@ module.exports = function (models) {
             deployedBy: "Steve Kent",
             deployedOn: new Date(),
             deploy_environment_id: ids.env1,
-            package_id: ids.pkg1
+            package_id: ids.pkg1,
+            workflow_stage_id: ids.wfs1
         });
     }
 

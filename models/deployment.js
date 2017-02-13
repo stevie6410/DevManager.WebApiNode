@@ -13,7 +13,8 @@ module.exports = function (sequelize, DataTypes) {
             classMethods: {
                 belongsToModels: [
                     'deployEnvironment',
-                    'package'
+                    'package',
+                    'workflowStage'
                 ],
                 hasManyModels: [
                     'deploymentEvent'

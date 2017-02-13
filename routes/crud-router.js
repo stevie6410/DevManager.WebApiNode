@@ -13,7 +13,7 @@ db.models.forEach(function (model) {
         //Build a list of relations to include
         if ("hasManyModels" in db[model]) {
             db[model].hasManyModels.forEach(function (to) {
-                // console.log(`Adding many relationship for ${model} into ${to}`)
+                // console.log(`Adding many relationship for ${model} into ${to}`)          
                 includeModels.push(db[to]);
             });
         }
@@ -89,17 +89,15 @@ db.models.forEach(function (model) {
                 .then((data) => {
                     return data.destroy()
                 }).then(() => {
+                    res.type("application/json");
                     res.status(200);
-                    res.send();
+                    res.send(JSON.stringify({ 'status': 'ok' }));
                 })
                 .catch((err) => {
                     res.status(400);
                     res.send(err);
                 })
         });
-
-
-
     }
 }, this);
 

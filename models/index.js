@@ -35,7 +35,6 @@ Object.keys(db).forEach(function (modelName) {
     if (Array.isArray(db[modelName].belongsToModels)) {
       db[modelName].belongsToModels.forEach(function (to) {
         db[modelName].belongsTo(db[to]);
-        // console.log('----belongsTo-----' + to);
       })
     };
   };
