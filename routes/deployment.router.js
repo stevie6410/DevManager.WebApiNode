@@ -4,7 +4,14 @@ var express = require('express');
 var router = express.Router();
 var SqlSync = require('../sqlsync/sqlsync');
 var Connection = require('tedious').Connection;
+var ConnectionPool = require('tedious-connection-pool');
 var db = require('../models');
+
+var poolConfig = {
+    min: 1,
+    max: 2,
+    log: true
+};
 
 router.get('/:id/deploy', function (req, res) {
     //Deploy the objects
@@ -35,7 +42,7 @@ router.get('/:id/deploy', function (req, res) {
         }
         console.log("We do have a workflowStage");
         //res.send(data);
-        var config = {
+        var connectionConfig = {
             server: data.workflowStage.database.serverName,
             userName: data.workflowStage.database.username,
             password: data.workflowStage.database.password,
@@ -44,22 +51,26 @@ router.get('/:id/deploy', function (req, res) {
             }
         };
 
-        var connection = new Connection(config);
+        var pool = new ConnectionPool(poolConfig, connectionConfig);
 
-        connection.on('connect', function (err) {
-            if (!err) {
-                console.log('Connected to ' + config.options.database);
+        pool.on('error', function (err) {
+            console.error(err);
+        });
 
-                var sqlSync = new SqlSync(connection, data.package.packageDbObjects);
-
-                sqlSync.printPackageObjectNames();
-                sqlSync.deploy();
-                res.send(sqlSync.dbObjects);
-
-
-            } else {
-                console.log('Connection Failed: ', err);
+        pool.acquire(function (err, connection) {
+            if (err) {
+                console.error(err);
+                reuturn;
             }
+
+            console.log('Connected to ' + connectionConfig.options.database);
+
+            var sqlSync = new SqlSync(connection, data.package.packageDbObjects);
+
+            sqlSync.printPackageObjectNames();
+            sqlSync.deploy();
+            res.send(sqlSync.dbObjects);
+
         });
     });
 });
