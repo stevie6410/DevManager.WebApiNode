@@ -232,17 +232,17 @@ module.exports = function (models) {
 
     models.workflow.findAll().then(data => {
         if (data.length == 0) {
-            console.log("Seeding Started");
+            console.log("Seeding Report Sync Started");
             waterfall(exec)
                 .then(() => {
-                    console.log("Seeding Complete");
+                    console.log("Seeding Report Sync Complete");
                     // console.log(ids);
                 })
                 .catch((err) => {
-                    console.log("Seeding Failed", err);
+                    console.log("Seeding Report Sync Failed", err);
                 });
         } else {
-            console.log('Seeding not required');
+            console.log('Seeding Report Sync not required');
         }
     });
 }

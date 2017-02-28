@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var dbInfoRouter = require('./routes/db-info.router');
 var packageRouter = require('./routes/report-sync/package.router');
 var reportSyncCrudRouter = require('./routes/report-sync/report-sync-crud-router');
+var devManagerCrudRouter = require('./routes/dev-manager/dev-manager-crud-router');
 
 var app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/api/dbinfo', dbInfoRouter);
 app.use('/api/packages', packageRouter);
 app.use('/api', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
+app.use('/api', devManagerCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
