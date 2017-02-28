@@ -8,9 +8,8 @@ var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var dbInfoRouter = require('./routes/db-info.router');
-var packageRouter = require('./routes/package.router');
-var crudRouter = require('./routes/crud-router');
-var deploymentRouter = require('./routes/deployment.router');
+var packageRouter = require('./routes/report-sync/package.router');
+var reportSyncCrudRouter = require('./routes/report-sync/report-sync-crud-router');
 
 var app = express();
 app.use(cors());
@@ -28,8 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/dbinfo', dbInfoRouter);
 app.use('/api/packages', packageRouter);
-app.use('/api/deployments', deploymentRouter);
-app.use('/api', crudRouter); //Always have this CRUD router last so that any overrides above are applied first
+app.use('/api', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

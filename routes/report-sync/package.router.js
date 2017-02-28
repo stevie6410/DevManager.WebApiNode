@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models');
+var db = require('../../models/report-sync');
 
 router.get('/:id', function (req, res) {
     db.package.findById(req.params.id, {

@@ -1,0 +1,6 @@
+C:\src\dump\DevManager.WebApiNode\sqlsync\bin\Debug\netstandard1.4\SqlDeploy.deps.json
+C:\src\dump\DevManager.WebApiNode\sqlsync\bin\Debug\netstandard1.4\SqlDeploy.dll
+C:\src\dump\DevManager.WebApiNode\sqlsync\bin\Debug\netstandard1.4\SqlDeploy.pdb
+C:\src\dump\DevManager.WebApiNode\sqlsync\obj\Debug\netstandard1.4\SqlDeploy.AssemblyInfo.cs
+C:\src\dump\DevManager.WebApiNode\sqlsync\obj\Debug\netstandard1.4\SqlDeploy.dll
+C:\src\dump\DevManager.WebApiNode\sqlsync\obj\Debug\netstandard1.4\SqlDeploy.pdb

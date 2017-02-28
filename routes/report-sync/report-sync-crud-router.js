@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models');
+var db = require('../../models/report-sync');
 var pluralize = require('pluralize');
 
 db.models.forEach(function (model) {

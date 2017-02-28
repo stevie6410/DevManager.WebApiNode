@@ -9,6 +9,7 @@ module.exports = function (sequelize, DataTypes) {
         databaseName: { type: S.STRING, allowNull: false },
         schemaName: { type: S.STRING, allowNull: false },
         objectName: { type: S.STRING, allowNull: false },
+        objectType: { type: S.STRING, allowNull: false },
         lastEventType: { type: S.STRING, allowNull: false },
         lastEventDDL: { type: S.TEXT, allowNull: false },
         createdBy: { type: S.STRING, allowNull: false },
@@ -24,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion
         });
 
-        packageDbObject.generateRoutes = true;
+    packageDbObject.generateRoutes = true;
 
     return packageDbObject;
 

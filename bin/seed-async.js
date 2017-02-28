@@ -162,10 +162,11 @@ module.exports = function (models) {
         ids.pkgRpt1 = res.id;
         return models.packageDbObject.create({
             guid: "dandn39dnao9838398298hndnd839n8",
-            objectKey: "ReportData.dbo.usp_SalesOrderStatus",
+            objectKey: "ReportData.dbo.uspSalesOrderStatus",
             databaseName: "ReportData",
             schemaName: "dbo",
-            objectName: "usp_SalesOrderStatus",
+            objectName: "uspSalesOrderStatus",
+            objectType: "PROCEDURE",
             lastEventType: "CREATE",
             lastEventDDL: `
                 CREATE PROCEDURE dbo.uspSalesOrderStatus
@@ -190,7 +191,8 @@ module.exports = function (models) {
             objectKey: "ReportData.dbo.usp_SalesOrderStatus_ByOwner",
             databaseName: "ReportData",
             schemaName: "dbo",
-            objectName: "usp_SalesOrderStatus_ByOwner",
+            objectName: "uspSalesOrderStatus_ByOwner",
+            objectType: "PROCEDURE",
             lastEventType: "CREATE",
             lastEventDDL: `
                 CREATE PROCEDURE dbo.uspSalesOrderStatus_ByOwner

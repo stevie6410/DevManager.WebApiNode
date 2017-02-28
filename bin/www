@@ -3,11 +3,10 @@
 /**
  * Module dependencies.
  */
-
 var app = require('../app');
 var debug = require('debug')('express-sequelize');
 var http = require('http');
-var models = require('../models');
+var reportSyncModels = require('../models/report-sync');
 var seedData = require('./seed-async');
 
 /**
@@ -21,12 +20,12 @@ app.set('port', port);
  */
 var server = http.createServer(app);
 
-models.sequelize.sync({
-  force: true
+reportSyncModels.sequelize.sync({
+  force: false
 }).then(function () {
   //Database initialized 
-  
-  seedData(models);
+
+  seedData(reportSyncModels);
 
   /**
    * Listen on provided port, on all network interfaces.
