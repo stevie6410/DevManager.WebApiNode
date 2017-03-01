@@ -38,9 +38,9 @@ module.exports = function (models) {
         return models.database.create({
             name: "ReportData - Test",
             databaseName: "ReportData",
-            serverName: "DC0348",
+            serverName: "localhost",
             useWindowsAuth: false,
-            username: 'appUser',
+            username: 'sa',
             password: 'Password2'
         });
     };
