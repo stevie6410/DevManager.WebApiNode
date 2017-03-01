@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/dbinfo', dbInfoRouter);
 app.use('/api/packages', packageRouter);
-app.use('/api', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
+app.use('/api/reportsync', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 app.use('/api', devManagerCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 
 // catch 404 and forward to error handler

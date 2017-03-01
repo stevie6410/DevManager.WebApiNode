@@ -39,11 +39,36 @@ Object.keys(db).forEach(function (modelName) {
     };
   };
 
+  //Dynamicaly pickup a list of tables and associate the belongsToMany functions
+  if ("belongsToManyModels" in db[modelName]) {
+    if (Array.isArray(db[modelName].belongsToManyModels)) {
+      db[modelName].belongsToManyModels.forEach(function (to) {
+        if (typeof to === 'string' || to instanceof String) {
+          //Just a string
+          db[modelName].belongsToMany(db[to]);
+        } else {
+          //A full object
+          if (to.through != null) {
+            db[modelName].belongsToMany(db[to.model], { through: to.through });
+          } else {
+            db[modelName].belongsToMany(db[to.model]);
+          }
+        }
+      })
+    };
+  };
+
   //Dynamicaly pickup a list of tables and associate the hasMany functions
   if ("hasManyModels" in db[modelName]) {
     if (Array.isArray(db[modelName].hasManyModels)) {
       db[modelName].hasManyModels.forEach(function (to) {
-        db[modelName].hasMany(db[to]);
+        if (typeof to === 'string' || to instanceof String) {
+          //Just a string
+          db[modelName].hasMany(db[to]);
+        } else {
+          //A full object
+          db[modelName].hasMany(db[to.model]);
+        }
         // console.log('----hasMany-----' + to);
       })
     };

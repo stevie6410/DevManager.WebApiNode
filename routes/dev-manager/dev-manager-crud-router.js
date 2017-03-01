@@ -24,6 +24,12 @@ db.models.forEach(function (model) {
                 includeModels.push(db[to]);
             });
         }
+        if("belongsToManyModels" in db[model]){
+            db[model].belongsToManyModels.forEach(function (to) {
+                // console.log(`Adding single relationship for ${model} into ${to}`)
+                includeModels.push(db[to.model]);
+            });
+        }
 
         //console.log(`       GET:    /api/${routeEntityName}`);
         //GET: All

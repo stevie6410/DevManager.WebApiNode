@@ -29,7 +29,7 @@ reportSyncModels.sequelize.sync({
   seedReportSyncData(reportSyncModels);
 
   devManagerModels.sequelize.sync({
-    force: false
+    force: true
   }).then(function () {
 
     seedDevManagerData(devManagerModels);

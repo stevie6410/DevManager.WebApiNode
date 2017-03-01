@@ -4,15 +4,17 @@ var S = require('sequelize');
 
 module.exports = function (sequelize, DataTypes) {
 
-    var department = sequelize.define("department", {
+    var system = sequelize.define("system", {
         name: { type: S.STRING, allowNull: false },
+        description: { type: S.STRING, allowNull: true },
         owner: { type: S.STRING, allowNull: false },
+        githubRepo: { type: S.STRING, allowNull: true },
         createdBy: { type: S.STRING, allowNull: false },
         updatedBy: { type: S.STRING, allowNull: true }
     }, {
             classMethods: {
                 belongsToManyModels: [
-                    { model: 'system', through: 'systemDepartments' }
+                    { model: 'department', through: 'systemDepartments' }
                 ]
             },
             underscored: true,
@@ -23,8 +25,8 @@ module.exports = function (sequelize, DataTypes) {
             paranoid: true //Add deleted timestamp flag instead of actual deletion
         });
 
-    department.generateRoutes = true;
+    system.generateRoutes = true;
 
-    return department;
+    return system;
 
 } 

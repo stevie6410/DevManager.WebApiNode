@@ -7,7 +7,7 @@ db.models.forEach(function (model) {
     if (db[model].generateRoutes) {
         var routeEntityName = pluralize.plural(model);
         var includeModels = [];
-        console.log(`       /api/${routeEntityName}`);
+        console.log(`       /api/reportsync/${routeEntityName}`);
 
         //console.log(`Adding CRUD routes for ${routeEntityName}`);
         //console.log('===========================================================');
@@ -20,6 +20,12 @@ db.models.forEach(function (model) {
         }
         if ("belongsToModels" in db[model]) {
             db[model].belongsToModels.forEach(function (to) {
+                // console.log(`Adding single relationship for ${model} into ${to}`)
+                includeModels.push(db[to]);
+            });
+        }
+        if("belongsToManyModels" in db[model]){
+            db[model].belongsToManyModels.forEach(function (to) {
                 // console.log(`Adding single relationship for ${model} into ${to}`)
                 includeModels.push(db[to]);
             });
