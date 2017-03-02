@@ -26,10 +26,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
+//DevManager Base Routes
 app.use('/api/dbinfo', dbInfoRouter);
-app.use('/api/packages', packageRouter);
-app.use('/api/reportsync', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 app.use('/api', devManagerCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
+
+//Report Sync Routes
+app.use('/api/reportsync/packages', packageRouter);
+app.use('/api/reportsync', reportSyncCrudRouter); //Always have this CRUD router last so that any overrides above are applied first
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
